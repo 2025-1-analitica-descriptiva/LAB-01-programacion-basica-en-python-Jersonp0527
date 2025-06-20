@@ -24,3 +24,17 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    letters_count = {}
+    with open('./files/input/data.csv', 'r') as file:
+        for line in file:
+            data = line.split()
+            dictionary = data[4].split(",")
+            for item in dictionary:
+                if ":" in item:
+                    key, _ = item.split(":")
+                    if key in letters_count:
+                        letters_count[key] += 1
+                    else:
+                        letters_count[key] = 1
+
+    return letters_count

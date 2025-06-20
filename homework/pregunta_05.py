@@ -15,3 +15,17 @@ def pregunta_05():
     [('A', 9, 2), ('B', 9, 1), ('C', 9, 0), ('D', 8, 3), ('E', 9, 1)]
 
     """
+    letters_count = {}    
+    with open('./files/input/data.csv', 'r') as file:
+        for line in file:
+            data = line.split()
+            letter = data[0]
+            value = int(data[1])            
+            if letter in letters_count:
+                letters_count[letter][0] = max(letters_count[letter][0], value)
+                letters_count[letter][1] = min(letters_count[letter][1], value)
+            else:
+                letters_count[letter] = [value, value]
+    letters_count = [(letter, max_val, min_val) for letter, (max_val, min_val) in letters_count.items()]
+    letters_count = sorted(letters_count, key=lambda x: x[0])
+    return letters_count    

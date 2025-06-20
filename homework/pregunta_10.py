@@ -20,3 +20,13 @@ def pregunta_10():
 
 
     """
+    list = []
+    with open('./files/input/data.csv', 'r') as file:
+        for line in file:
+            data = line.split()
+            letter = data[0]
+            col4 = len(data[3].split(','))
+            col5 = len(data[4].split(','))
+            list.append((letter, col4, col5))
+
+    return list

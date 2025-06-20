@@ -15,3 +15,16 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+    letters_count = {}    
+    with open('./files/input/data.csv', 'r') as file:
+        for line in file:
+            data = line.split()
+            letter = data[0]
+            value = int(data[1])            
+            if letter in letters_count:
+                letters_count[letter] += value
+            else:
+                letters_count[letter] = value
+    letters_count = sorted(letters_count.items(), key=lambda x: x[0])
+    return letters_count
+

@@ -27,3 +27,16 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    records = {}
+    with open('./files/input/data.csv', 'r') as file:
+        for line in file:
+            data = line.split()
+            key = int(data[1])
+            value = data[0]
+            if key not in records:
+                records[key] = set()
+            records[key].add(value)
+
+    # Convert sets to sorted lists
+    result = [(key, sorted(values)) for key, values in sorted(records.items())]
+    return result

@@ -25,3 +25,15 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+    values_dict = {}
+    with open('./files/input/data.csv', 'r') as file:
+        for line in file:
+            data = line.split()
+            letter = data[0]
+            value = int(data[1])
+            if value not in values_dict:
+                values_dict[value] = []
+            values_dict[value].append(letter)
+
+    result = [(value, letters) for value, letters in sorted(values_dict.items())]
+    return result

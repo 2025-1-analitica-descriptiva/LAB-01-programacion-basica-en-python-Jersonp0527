@@ -26,3 +26,21 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    letters_count = {}    
+    with open('./files/input/data.csv', 'r') as file:
+        for line in file:
+            data = line.split()
+            dictionary = data[4].split(",")
+            for item in dictionary:
+                if ":" in item:
+                    key, value = item.split(":")
+                    value = int(value)
+                    if key in letters_count:
+                        letters_count[key][0] = min(letters_count[key][0], value)
+                        letters_count[key][1] = max(letters_count[key][1], value)
+                    else:
+                        letters_count[key] = [value, value]
+
+    letters_count = [(key, min_val, max_val) for key, (min_val, max_val) in letters_count.items()]
+    letters_count = sorted(letters_count, key=lambda x: x[0])
+    return letters_count

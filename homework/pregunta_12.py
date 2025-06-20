@@ -15,3 +15,19 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+    dictionary = {}
+    with open('./files/input/data.csv', 'r') as file:
+        for line in file:
+            data = line.split()
+            letters = data[0]
+            values = data[4].split(",")
+            for i in values:
+                value = int(i.split(":")[1])
+                if letters not in dictionary.keys():
+                    dictionary[letters] = value
+                else:
+                    dictionary[letters] += value
+
+    dictionary = dict(sorted(dictionary.items()))
+
+    return dictionary
